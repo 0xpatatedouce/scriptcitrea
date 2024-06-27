@@ -11,6 +11,9 @@ else
   sudo apt update && sudo apt upgrade && sudo apt install curl screen -y < "/dev/null"
 fi
 
+# Logo
+sleep 1 && curl -s https://raw.githubusercontent.com/0xpatatedouce/logo-/main/sweet%20potato.sh  | bash && sleep 1
+
 # Check and install Docker if necessary
 if exists docker; then
   echo 'Docker is already installed.'
