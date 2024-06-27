@@ -8,7 +8,7 @@ exists() {
 if exists curl; then
   echo 'curl is already installed.'
 else
-  sudo apt update && sudo apt upgrade && sudo apt install curl screen -y < "/dev/null"
+  sudo apt-get update && sudo apt upgrade && sudo apt-get install curl screen -y < "/dev/null"
 fi
 
 # Logo
