@@ -74,4 +74,4 @@ SKIP_GUEST_BUILD=1 make build-release
 screen -dmS citrea bash -c './target/release/citrea --da-layer bitcoin --rollup-config-path configs/devnet/rollup_config.toml --genesis-paths configs/devnet/genesis-files'
 
 echo "Setup complete. Citrea is running in a screen session named 'citrea'."
-echo "To attach to the session, use: screen -r citrea"
+echo "To attach to the session, use: screen -x citrea"
