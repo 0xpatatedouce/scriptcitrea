@@ -3,7 +3,7 @@ cd $HOME && curl -o citrea.sh https://raw.githubusercontent.com/0xpatatedouce/sc
 ```
 
 ```
-cd citrea && sudo screen -S citrea  
+cd citrea && screen -S citrea  
 ```
 
 ```
