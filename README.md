@@ -41,7 +41,7 @@ screen -x citrea
 
 You can use Crtl + c to stop the node 
 
-If you encouter any issue you can send me a DM on my tweeter or you can go on the Citrea discord :
+If you encounter any issue you can send me a DM on my tweeter or you can go on the Citrea discord :
 
 https://x.com/0xpatatedouce
 
