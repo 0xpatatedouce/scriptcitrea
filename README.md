@@ -1,5 +1,7 @@
 
-Citrea is an innovative layer 2 solution for Bitcoin, leveraging zk-proofs to enable fast, secure, and private transactions. By utilizing a zkEVM (Zero-Knowledge Ethereum Virtual Machine) of type 2, Citrea enhances Bitcoin's capabilities with scalable smart contracts. The network, currently in its testnet phase, combines the robust security of Bitcoin with the efficiency of zk-rollups. This allows for high transaction throughput, confidentiality, and seamless interoperability with other blockchains, aiming to bring scalable and secure decentralized applications to the Bitcoin ecosystem.
+Citrea is an innovative layer 2 solution for Bitcoin, leveraging zk-proofs to enable fast, secure, and private transactions. By utilizing a zkEVM (Zero-Knowledge Ethereum Virtual Machine) of type 2, Citrea enhances Bitcoin's capabilities with scalable smart contracts. The network, currently in its testnet phase, combines the robust security of Bitcoin with the efficiency of zk-rollups. This allows for high transaction throughput, confidentiality, and seamless interoperability with other blockchains, aiming to bring scalable and secure decentralized applications to the Bitcoin ecosystem. 
+
+Check the official doc :https://docs.citrea.xyz/technical-specs/introduction if you want to deep dive. 
 ![GQI72jfakAA5w2B](https://github.com/0xpatatedouce/scriptcitrea/assets/123324096/217689b0-a6a9-4790-8794-e97865778def)
 
 
