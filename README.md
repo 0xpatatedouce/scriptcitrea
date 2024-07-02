@@ -43,6 +43,76 @@ screen -x citrea
 
 You can use Crtl + c to stop the node 
 
+```
+sudo apt install ufw -y
+ufw allow ssh 
+ufw allow http 
+ufw allow 31244
+ufw allow 31245
+ufw allow 8080
+ufw allow 80
+ufw allow 22/tcp
+ufw allow 80/tcp
+ufw enable
+```
+
+```
+sudo apt install nginx -y
+```
+
+```
+sudo nano /etc/nginx/sites-available/citrea-rpc
+```
+
+```
+server {
+    listen 8080;
+    server_name 0.0.0.0;
+
+    location / {
+        proxy_pass http://localhost:12346;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "upgrade";
+        proxy_set_header Host $host;
+        proxy_cache_bypass $http_upgrade;
+    }
+}
+```
+ctrl + x and press y
+
+
+```
+sudo ln -s /etc/nginx/sites-available/citrea-rpc /etc/nginx/sites-enabled/
+```
+
+```
+sudo nginx -t
+```
+
+```
+sudo systemctl enable nginx
+```
+
+```
+sudo systemctl start nginx 
+```
+
+```
+sudo systemctl status nginx
+```
+
+```
+curl -X POST --header "Content-Type: application/json" --data '{"jsonrpc":"2.0","method":"citrea_syncStatus","params":[], "id":78}' http://167.86.111.173:80
+```
+
+![Capture d’écran 2024-07-02 233535](https://github.com/0xpatatedouce/scriptcitrea/assets/123324096/9487e4af-227c-436c-9368-22fe42c514ce)
+
+![Capture d’écran 2024-07-02 234032](https://github.com/0xpatatedouce/scriptcitrea/assets/123324096/02e11e59-99d9-4017-834e-429e50b27dde)
+
+
 If you encounter any issue you can send me a DM on my tweeter or you can go on the Citrea discord :
 
 https://x.com/0xpatatedouce
