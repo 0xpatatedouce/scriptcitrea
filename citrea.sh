@@ -39,7 +39,7 @@ else
 fi
 
 # Install build essentials and clang
-sudo apt install build-essential screen clang -y
+sudo apt install build-essential screen systemd clang -y
 
 # Install Rust
 if exists rustc; then
