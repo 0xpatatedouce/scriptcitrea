@@ -43,6 +43,52 @@ screen -x citrea
 
 You can use Crtl + c to stop the node 
 
+Optional : Control your node with Systemd
+
+If systemd is not install:
+```
+sudo apt-get install systemd -y
+```
+
+```
+nano /etc/systemd/system/citrea.service
+```
+
+```
+[Unit]
+Description=Citrea Fullnode
+After=network-online.target
+
+[Service]
+Type=simple
+ExecStart=/root/citrea/target/release/citrea --da-layer bitcoin --rollup-config-path /root/citrea/configs/devnet/rollup_config.toml --genesis-paths /root/citrea/configs/devnet/genesis-files
+Restart=always
+RestartSec=5
+LimitNOFILE=65535
+
+[Install]
+WantedBy=multi-user.target
+```
+Save and exit (Ctrl + X, then Y, then Enter)
+
+
+```
+systemctl enable citrea.service
+```
+
+```
+systemctl start citrea.service
+
+```
+You can verify the status of the service 
+```
+systemctl status citrea.service
+```
+
+```
+journalctl -u citrea.service -f
+```
+
 Optional : setup your own RPC 
 
 open theses ports: 
@@ -88,7 +134,7 @@ server {
 }
 ```
 
-Now press on ctrl + x and y to save your file and exit it 
+Save and exit (Ctrl + X, then Y, then Enter).
 
 Move the file 
 ```
