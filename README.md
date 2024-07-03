@@ -80,8 +80,8 @@ systemctl enable citrea.service
 systemctl start citrea.service
 ```
 
-```
 You can verify the status of the service 
+
 ```
 systemctl status citrea.service
 ```
