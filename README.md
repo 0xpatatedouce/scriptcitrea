@@ -43,6 +43,9 @@ screen -x citrea
 
 You can use Crtl + c to stop the node 
 
+Optional : setup your own RPC 
+
+open theses ports: 
 ```
 sudo apt install ufw -y
 ufw allow ssh 
@@ -56,14 +59,17 @@ ufw allow 80/tcp
 ufw enable
 ```
 
+now install nginx
 ```
 sudo apt install nginx -y
 ```
 
+open a file to configure your rpc 
 ```
 sudo nano /etc/nginx/sites-available/citrea-rpc
 ```
 
+paste this code, just replace the 0.0.0.0 with your address IP
 ```
 server {
     listen 8080;
@@ -81,29 +87,35 @@ server {
     }
 }
 ```
-ctrl + x and press y
 
+Now press on ctrl + x and y to save your file and exit it 
 
+Move the file 
 ```
 sudo ln -s /etc/nginx/sites-available/citrea-rpc /etc/nginx/sites-enabled/
 ```
 
+verify if nginx work well 
 ```
 sudo nginx -t
 ```
 
+Enable the service 
 ```
 sudo systemctl enable nginx
 ```
 
+Start the service 
 ```
 sudo systemctl start nginx 
 ```
 
+You verify the status of the service 
 ```
 sudo systemctl status nginx
 ```
 
+try this curl command to see if the rpc work you have an outup like this 
 ```
 curl -X POST --header "Content-Type: application/json" --data '{"jsonrpc":"2.0","method":"citrea_syncStatus","params":[], "id":78}' http://167.86.111.173:80
 ```
