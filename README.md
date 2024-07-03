@@ -20,7 +20,7 @@ A Linux/Mac/Windows system with a configuration of
 
 satisfies the minimum requirements to run a Citrea node.
 
-I use a Ubuntu 22.04.  
+I use Ubuntu 22.04.  
 
 Now install the configurable setup with my script :
 ```bash
@@ -110,14 +110,14 @@ Start the service
 sudo systemctl start nginx 
 ```
 
-You verify the status of the service 
+You can verify the status of the service 
 ```
 sudo systemctl status nginx
 ```
 
-try this curl command to see if the rpc work you have an outup like this 
+You can try this curl command to see if the rpc work, you should have a result like this 
 ```
-curl -X POST --header "Content-Type: application/json" --data '{"jsonrpc":"2.0","method":"citrea_syncStatus","params":[], "id":78}' http://167.86.111.173:80
+Curl -X POST --header "Content-Type: application/json" --data '{"jsonrpc":"2.0","method":"citrea_syncStatus","params":[], "id":78}' http://167.86.111.173:80
 ```
 
 ![Capture d’écran 2024-07-02 233535](https://github.com/0xpatatedouce/scriptcitrea/assets/123324096/9487e4af-227c-436c-9368-22fe42c514ce)
