@@ -30,7 +30,7 @@ Change directory to the citrea directory and open a new screen :
 ```
 cd citrea && screen -S citrea  
 ```
-Now you can run the node
+Now you can run the node:
 ```
 ./target/release/citrea --da-layer bitcoin --rollup-config-path configs/devnet/rollup_config.toml --genesis-paths configs/devnet/genesis-files
 ```
@@ -50,12 +50,12 @@ If systemd is not install:
 sudo apt-get install systemd -y
 ```
 
-open a file 
+Create a file for the service:
 ```
 nano /etc/systemd/system/citrea.service
 ```
 
-copy and paste this into the file 
+Copy and paste this into the file:
 ```
 [Unit]
 Description=Citrea Fullnode
@@ -73,22 +73,22 @@ WantedBy=multi-user.target
 ```
 Save and exit (Ctrl + X, then Y, then Enter)
 
-enable the service 
+Enable the service:
 ```
 systemctl enable citrea.service
 ```
 
-start the service 
+Start the service:
 ```
 systemctl start citrea.service
 ```
 
-You can verify the status of the service 
+You can verify the status of the service:
 ```
 systemctl status citrea.service
 ```
 
-with this command you can check the service logs
+With this command you can check the service logs:
 ```
 journalctl -u citrea.service -f
 ```
@@ -109,17 +109,17 @@ ufw allow 80/tcp
 ufw enable
 ```
 
-now install nginx
+Now install nginx:
 ```
 sudo apt install nginx -y
 ```
 
-open a file to configure your rpc 
+Create a file to configure your rpc:
 ```
 sudo nano /etc/nginx/sites-available/citrea-rpc
 ```
 
-paste this code, just replace the 0.0.0.0 with your address IP
+Paste this code, just replace the 0.0.0.0 with your address IP
 ```
 server {
     listen 8080;
@@ -140,32 +140,32 @@ server {
 
 Save and exit (Ctrl + X, then Y, then Enter).
 
-Move the file 
+Move the file:
 ```
 sudo ln -s /etc/nginx/sites-available/citrea-rpc /etc/nginx/sites-enabled/
 ```
 
-verify if nginx work well 
+Verify if nginx work well:
 ```
 sudo nginx -t
 ```
 
-Enable the service 
+Enable the service:
 ```
 sudo systemctl enable nginx
 ```
 
-Start the service 
+Start the service:
 ```
 sudo systemctl start nginx 
 ```
 
-You can verify the status of the service 
+You can verify the status of the service:
 ```
 sudo systemctl status nginx
 ```
 
-You can try this curl command to see if the rpc work, you should have a result like this 
+You can try this curl command to see if the rpc work, you should have a result like this:
 ```
 Curl -X POST --header "Content-Type: application/json" --data '{"jsonrpc":"2.0","method":"citrea_syncStatus","params":[], "id":78}' http://167.86.111.173:80
 ```
