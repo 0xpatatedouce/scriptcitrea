@@ -50,10 +50,12 @@ If systemd is not install:
 sudo apt-get install systemd -y
 ```
 
+open a file 
 ```
 nano /etc/systemd/system/citrea.service
 ```
 
+copy and paste this into the file 
 ```
 [Unit]
 Description=Citrea Fullnode
@@ -71,21 +73,22 @@ WantedBy=multi-user.target
 ```
 Save and exit (Ctrl + X, then Y, then Enter)
 
-
+enable the service 
 ```
 systemctl enable citrea.service
 ```
 
+start the service 
 ```
 systemctl start citrea.service
 ```
 
 You can verify the status of the service 
-
 ```
 systemctl status citrea.service
 ```
 
+with this command you can check the service logs
 ```
 journalctl -u citrea.service -f
 ```
