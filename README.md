@@ -22,11 +22,11 @@ satisfies the minimum requirements to run a Citrea node.
 
 I use Ubuntu 22.04.  
 
-Now install the configurable setup with my script :
+Now install the configurable setup with my script:
 ```bash
 cd $HOME && curl -o citrea.sh https://raw.githubusercontent.com/0xpatatedouce/scriptcitrea/main/citrea.sh && bash citrea.sh
 ```
-Change directory to the citrea directory and open a new screen :
+Change directory to the citrea directory and open a new screen:
 ```
 cd citrea && screen -S citrea  
 ```
@@ -172,6 +172,7 @@ Curl -X POST --header "Content-Type: application/json" --data '{"jsonrpc":"2.0",
 
 ![Capture d’écran 2024-07-02 233535](https://github.com/0xpatatedouce/scriptcitrea/assets/123324096/9487e4af-227c-436c-9368-22fe42c514ce)
 
+You can set your rpc on Metamask: 
 ![Capture d’écran 2024-07-02 234032](https://github.com/0xpatatedouce/scriptcitrea/assets/123324096/02e11e59-99d9-4017-834e-429e50b27dde)
 
 
