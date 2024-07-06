@@ -1,61 +1,65 @@
 
-Citrea is an innovative layer 2 solution for Bitcoin, leveraging zk-proofs to enable fast, secure, and private transactions. By utilizing a zkEVM (Zero-Knowledge Ethereum Virtual Machine) of type 2, Citrea enhances Bitcoin's capabilities with scalable smart contracts. The network, currently in its testnet phase, combines the robust security of Bitcoin with the efficiency of zk-rollups. This allows for high transaction throughput, confidentiality, and seamless interoperability with other blockchains, aiming to bring scalable and secure decentralized applications to the Bitcoin ecosystem. 
+# GUIDE TO RUN THE CITREA FULLNODE:
+
+
+# Introduction into citrea:
+
+Citrea is an innovative layer 2 solution for Bitcoin, leveraging zk-proofs to enable fast, secure, and private transactions. By utilizing a zkEVM (Zero-Knowledge Ethereum Virtual Machine) of type 2, Citrea enhances Bitcoin's capabilities with scalable smart contracts. The network, currently in its devnet phase, combines the robust security of Bitcoin with the efficiency of zk-rollups. This allows for high transaction throughput, confidentiality, and seamless interoperability with other blockchains, aiming to bring scalable and secure decentralized applications to the Bitcoin ecosystem. 
 
 Check the official doc :https://docs.citrea.xyz/technical-specs/introduction if you want to deep dive. 
+
 ![GQI72jfakAA5w2B](https://github.com/0xpatatedouce/scriptcitrea/assets/123324096/217689b0-a6a9-4790-8794-e97865778def)
 
+# Install and run the node:
 
-
-Check the Hardware Requirements:
+## Check the Hardware Requirements:
 
 A Linux/Mac/Windows system with a configuration of
 
-8 GB Ram 
-
-256 GB SSD (NVMe recommended) 
-
-4 core CPU 
-
-25+ Mbps network connection 
+- **8 GB Ram 
+- **256 GB SSD (NVMe recommended) 
+- **4 core CPU 
+- **25+ Mbps network connection 
 
 satisfies the minimum requirements to run a Citrea node.
 
 I use Ubuntu 22.04.  
 
-Now install the configurable setup with my script:
+## Now install the configurable setup with my script:
 ```bash
 cd $HOME && curl -o citrea.sh https://raw.githubusercontent.com/0xpatatedouce/scriptcitrea/main/citrea.sh && bash citrea.sh
 ```
-Change directory to the citrea directory and open a new screen:
+## Change directory to the citrea directory and open a new screen:
 ```
 cd citrea && screen -S citrea  
 ```
-Now you can run the node:
+## Now you can run the node:
 ```
 ./target/release/citrea --da-layer bitcoin --rollup-config-path configs/devnet/rollup_config.toml --genesis-paths configs/devnet/genesis-files
 ```
 <img width="1248" alt="Capture d’écran 2024-06-30 à 11 29 37" src="https://github.com/0xpatatedouce/scriptcitrea/assets/123324096/6f0953a6-8324-4f02-a2a2-0945ec0cec32">
 
-If you want to retrieve your screen use this command:
+## If you want to retrieve your screen use this command:
 ```
 screen -x citrea
 ```
 
 You can use Crtl + c to stop the node 
 
-Optional : Control your node with Systemd
 
-If systemd is not install:
+# Optional : `Control your node with Systemd`
+
+## If systemd is not install:
 ```
 sudo apt-get install systemd -y
 ```
 
-Create a file for the service:
+## Create a file for the service:
 ```
 nano /etc/systemd/system/citrea.service
 ```
 
-Copy and paste this into the file:
+## Copy and paste this into the file:
 ```
 [Unit]
 Description=Citrea Fullnode
@@ -73,29 +77,30 @@ WantedBy=multi-user.target
 ```
 Save and exit (Ctrl + X, then Y, then Enter)
 
-Enable the service:
+## Enable the service:
 ```
 systemctl enable citrea.service
 ```
 
-Start the service:
+## Start the service:
 ```
 systemctl start citrea.service
 ```
 
-You can verify the status of the service:
+## You can verify the status of the service:
 ```
 systemctl status citrea.service
 ```
 
-With this command you can check the service logs:
+## With this command you can check the service logs:
 ```
 journalctl -u citrea.service -f
 ```
 
-Optional : setup your own RPC 
 
-open theses ports: 
+# Optional : `setup your own RPC`
+
+## open theses ports: 
 ```
 sudo apt install ufw -y
 ufw allow ssh 
@@ -109,17 +114,17 @@ ufw allow 80/tcp
 ufw enable
 ```
 
-Now install nginx:
+## Now install nginx:
 ```
 sudo apt install nginx -y
 ```
 
-Create a file to configure your rpc:
+## Create a file to configure your rpc:
 ```
 sudo nano /etc/nginx/sites-available/citrea-rpc
 ```
 
-Paste this code, just replace the 0.0.0.0 with your address IP
+## Paste this code, just replace the 0.0.0.0 with your address IP:
 ```
 server {
     listen 8080;
@@ -140,39 +145,39 @@ server {
 
 Save and exit (Ctrl + X, then Y, then Enter).
 
-Move the file:
+## Move the file:
 ```
 sudo ln -s /etc/nginx/sites-available/citrea-rpc /etc/nginx/sites-enabled/
 ```
 
-Verify if nginx work well:
+## Verify if nginx work well:
 ```
 sudo nginx -t
 ```
 
-Enable the service:
+## Enable the service:
 ```
 sudo systemctl enable nginx
 ```
 
-Start the service:
+## Start the service:
 ```
 sudo systemctl start nginx 
 ```
 
-You can verify the status of the service:
+## You can verify the status of the service:
 ```
 sudo systemctl status nginx
 ```
 
-You can try this curl command to see if the rpc work, you should have a result like this:
+## You can try this curl command to see if the rpc work, you should have a result like this:
 ```
 Curl -X POST --header "Content-Type: application/json" --data '{"jsonrpc":"2.0","method":"citrea_syncStatus","params":[], "id":78}' http://167.86.111.173:80
 ```
 
 ![Capture d’écran 2024-07-02 233535](https://github.com/0xpatatedouce/scriptcitrea/assets/123324096/9487e4af-227c-436c-9368-22fe42c514ce)
 
-You can set your rpc on Metamask:
+## You can set your rpc on Metamask:
 
 ![Capture d’écran 2024-07-02 234032](https://github.com/0xpatatedouce/scriptcitrea/assets/123324096/02e11e59-99d9-4017-834e-429e50b27dde)
 
