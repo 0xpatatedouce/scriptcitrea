@@ -170,9 +170,9 @@ sudo systemctl start nginx
 sudo systemctl status nginx
 ```
 
-## You can try this curl command to see if the rpc work, you should have a result like this:
+## You can try this curl command to see if the rpc work, you should have a result like this (replace the 0.0.0.0 by your Ip):
 ```
-curl -X POST --header "Content-Type: application/json" --data '{"jsonrpc":"2.0","method":"citrea_syncStatus","params":[], "id":78}' http://167.86.111.173:80
+curl -X POST --header "Content-Type: application/json" --data '{"jsonrpc":"2.0","method":"citrea_syncStatus","params":[], "id":78}' http://0.0.0.0:8080
 ```
 
 ![Capture d’écran 2024-07-02 233535](https://github.com/0xpatatedouce/scriptcitrea/assets/123324096/9487e4af-227c-436c-9368-22fe42c514ce)
