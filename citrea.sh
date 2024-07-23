@@ -62,7 +62,7 @@ docker logs bitcoin-signet-client-instance
 
 # Clone and setup Citrea
 cd
-git clone https://github.com/chainwayxyz/citrea --branch=v0.4.1 && cd citrea
+git clone https://github.com/chainwayxyz/citrea --branch=v0.4.5 && cd citrea
 
 # Modify the config file
 sed -i 's/node_url = ".*"/node_url = "http:\/\/0.0.0.0:38332"/' configs/devnet/rollup_config.toml
