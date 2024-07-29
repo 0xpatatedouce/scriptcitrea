@@ -1,19 +1,15 @@
 #!/bin/bash
-
 exists() {
   command -v "$1" >/dev/null 2>&1
 }
-
 # Check and install curl if necessary
 if exists curl; then
   echo 'curl is already installed.'
 else
   sudo apt-get update && sudo apt upgrade && sudo apt-get install curl screen -y < "/dev/null"
 fi
-
 # Logo
 sleep 1 && curl -s https://raw.githubusercontent.com/0xpatatedouce/logo-/main/sweet%20potato.sh  | bash && sleep 1
-
 # Check and install Docker if necessary
 if exists docker; then
   echo 'Docker is already installed.'
@@ -28,7 +24,6 @@ else
   sudo systemctl enable docker
   docker --version
 fi
-
 # Check and install Docker Compose if necessary
 if exists docker-compose; then
   echo 'Docker Compose is already installed.'
@@ -37,10 +32,8 @@ else
   sudo chmod +x /usr/local/bin/docker-compose 
   docker-compose --version
 fi
-
 # Install build essentials and clang
 sudo apt install build-essential screen systemd clang -y
-
 # Install Rust
 if exists rustc; then
   echo 'Rust is already installed.'
@@ -48,7 +41,6 @@ else
   curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
   source $HOME/.cargo/env
 fi
-
 # Clone and setup Bitcoin Signet
 git clone https://github.com/chainwayxyz/bitcoin_signet && cd bitcoin_signet
 docker build -t bitcoin-signet .
@@ -59,16 +51,19 @@ docker run -d --name bitcoin-signet-client-instance \
   --env ADDNODE=signet.citrea.xyz:38333 -p 38332:38332 \
   bitcoin-signet
 docker logs bitcoin-signet-client-instance
-
 # Clone and setup Citrea
 cd
 git clone https://github.com/chainwayxyz/citrea --branch=v0.4.5 && cd citrea
-
 # Modify the config file
 sed -i 's/node_url = ".*"/node_url = "http:\/\/0.0.0.0:38332"/' configs/devnet/rollup_config.toml
 sed -i 's/node_username = ".*"/node_username = "bitcoin"/' configs/devnet/rollup_config.toml
 sed -i 's/node_password = ".*"/node_password = "bitcoin"/' configs/devnet/rollup_config.toml
-
 # Build and run Citrea
 SKIP_GUEST_BUILD=1 make build-release
 
+# Start Citrea in a new screen session
+screen -dmS citrea bash -c 'cd ~/citrea && ./target/release/citrea --da-layer bitcoin --rollup-config-path configs/devnet/rollup_config.toml --genesis-paths configs/devnet/genesis-files'
+
+echo "Citrea has been started in a screen session named 'citrea'."
+echo "To attach to the session, use: screen -r citrea"
+echo "To detach from the session once attached, use: Ctrl+A followed by D"
