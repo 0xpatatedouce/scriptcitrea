@@ -61,8 +61,3 @@ sed -i 's/node_password = ".*"/node_password = "bitcoin"/' configs/devnet/rollup
 # Build and run Citrea
 SKIP_GUEST_BUILD=1 make build-release
 
-# Start Citrea in a new screen session and attach to it
-echo "Starting Citrea in a new screen session..."
-echo "To detach from the session once attached, use: Ctrl+A followed by D"
-sleep 2
-exec screen -S citrea bash -c 'cd ~/citrea && ./target/release/citrea --da-layer bitcoin --rollup-config-path configs/devnet/rollup_config.toml --genesis-paths configs/devnet/genesis-files; exec bash'
