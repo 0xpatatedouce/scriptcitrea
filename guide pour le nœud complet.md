@@ -30,9 +30,19 @@ Personnellement utilise Ubuntu 22.04.
 cd $HOME && curl -o citrea.sh https://raw.githubusercontent.com/0xpatatedouce/scriptcitrea/main/citrea.sh && bash citrea.sh
 ```
 
+## Changez de répertoire pour le répertoire citrea et ouvrez un nouvel écran :
+```
+cd citrea && screen -S citrea  
+```
+
+## Vous pouvez maintenant exécuter le nœud :
+```
+./target/release/citrea --da-layer bitcoin --rollup-config-path configs/devnet/rollup_config.toml --genesis-paths configs/devnet/genesis-files
+```
+
 <img width="1248" alt="Capture d’écran 2024-06-30 à 11 29 37" src="https://github.com/0xpatatedouce/scriptcitrea/assets/123324096/6f0953a6-8324-4f02-a2a2-0945ec0cec32">
 
-## Si vous voulez récupérer votre écran, utilisez la commande suivante :
+## Si vous voulez retourner dans votre écran, utilisez la commande suivante :
 ```
 screen -x citrea
 ```
